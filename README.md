@@ -1,43 +1,135 @@
-# retailpro-sql
-Proyecto SQL - Modelo de datos RetailPro
+# RetailPro / TechStore — Proyecto de Análisis de Datos
 
-# Proyecto de Base de Datos - Ventas Tech DB
+Proyecto desarrollado como parte de mi formación en Análisis de Datos.
 
-## 📌 Descripción del Proyecto
-Este proyecto implementa el diseño, creación y carga de una base de datos relacional para la gestión de ventas y productos de una tienda de tecnología. Contempla la administración de categorías, productos, clientes y el registro de ventas con sus correspondientes relaciones de integridad referencial.
+El objetivo es construir una solución de análisis de ventas completa, comenzando por el diseño de una base de datos relacional en SQL Server y avanzando hacia un proceso ETL en Power BI mediante Power Query.
 
 ---
 
-## 🚀 Requisitos e Instalación
+## Base de datos
 
-### Requisitos previos:
-- Gestor de Base de Datos: **SQL Server** / Azure Data Studio / DBeaver.
-- Permisos para crear y modificar bases de datos locales.
+Se creó la base de datos:
 
-### Instrucciones de ejecución:
-1. Abrir el archivo `script.sql` en SQL Server Management Studio (SSMS) o tu cliente SQL preferido.
-2. Asegurarse de estar conectado a la instancia local.
-3. Ejecutar el script completo de forma secuencial. El script crea la base de datos `Ventas_Tech_DB`, selecciona el contexto automáticamente y carga la información inicial.
+`Ventas_Tech_DB`
 
----
+El modelo está compuesto por cuatro tablas relacionadas:
 
-## 📂 Estructura del Script SQL
+- `categorias`
+- `clientes`
+- `productos`
+- `ventas`
 
-El archivo SQL está organizado en las siguientes secciones:
+Se implementaron:
 
-1. **Configuración y Creación de Base de Datos:**
-   - Creación de `Ventas_Tech_DB` y selección con `USE`.
-2. **DDL - Eliminación (DROP) y Creación de Tablas (CREATE):**
-   - Definición de tablas maestras (`categorias`, `clientes`).
-   - Definición de tablas con claves foráneas (`productos`, `ventas`, `detalle_ventas`).
-   - Restricciones de integridad (`PRIMARY KEY`, `FOREIGN KEY`, tipos de datos y valores por defecto).
-3. **DML - Inserción de Datos (INSERT INTO):**
-   - Carga de registros de prueba consistentes para validar las relaciones.
-4. **DQL - Verificación (SELECT):**
-   - Consultas de comprobación para validar la correcta persistencia de los datos.
+- Primary Keys
+- Foreign Keys
+- Restricciones `NOT NULL`
+- Valores `DEFAULT`
+- Inserción de datos
+- Relaciones entre las tablas
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
-- **Lenguaje:** SQL (T-SQL / Estándar)
-- **Motor:** SQL Server
+## Consultas SQL de negocio
+
+Se desarrollaron consultas orientadas al análisis comercial para obtener métricas como:
+
+- Facturación total
+- Cantidad de pedidos
+- Ticket promedio
+- Ranking de productos
+- Unidades vendidas
+- Clientes recurrentes
+- Facturación mensual
+- Comparación contra el promedio mensual
+
+---
+
+## JOINs y análisis relacional
+
+Se utilizaron `INNER JOIN` y `LEFT JOIN` para combinar la información de las diferentes tablas.
+
+Entre las consultas realizadas se encuentran:
+
+- Vista detallada de ventas
+- Ventas con información del cliente
+- Ventas con información del producto y categoría
+- Identificación de clientes sin compras
+- Identificación de productos sin ventas
+- Consolidación de información mediante `UNION ALL`
+
+---
+
+## Pipeline ETL con Power BI
+
+Se desarrolló un proceso ETL utilizando Power BI y Power Query a partir del dataset `Pipeline_ETL_Dataset.xlsx`.
+
+El proceso incluyó:
+
+### Extracción
+Importación de las tablas:
+
+- `clientes`
+- `productos`
+- `categorias`
+- `ventas`
+
+### Transformación
+Se realizaron tareas de limpieza y preparación de datos:
+
+- Análisis de calidad de columnas
+- Eliminación de registros duplicados por ID
+- Tratamiento de valores nulos
+- Corrección de tipos de datos
+- Estandarización de nombres
+- Validación de claves
+- Preparación de dimensiones y tabla de hechos
+
+Las consultas fueron renombradas siguiendo una nomenclatura orientada a un modelo analítico:
+
+- `Dim_Clientes`
+- `Dim_Productos`
+- `Dim_Categorias`
+- `Fact_Ventas`
+
+### Merge de consultas
+
+Se realizó un Merge entre `Fact_Ventas` y `Dim_Productos` mediante `id_producto`.
+
+Esto permitió incorporar a la tabla de ventas información descriptiva como:
+
+- `nombre_producto`
+- `categoria`
+
+De esta forma, `Fact_Ventas` queda preparada como fuente principal para los futuros análisis y visualizaciones.
+
+---
+
+## Calidad de datos
+
+Durante el proceso ETL se identificaron y trataron problemas intencionales del dataset:
+
+- Clientes duplicados
+- Productos duplicados
+- Valores nulos en clientes
+- Valores nulos en productos
+- Tipos de datos incorrectos
+
+Las decisiones de limpieza fueron tomadas buscando conservar información útil sin comprometer la calidad del modelo.
+
+---
+
+##  Power Query y lenguaje M
+
+Las transformaciones realizadas en Power Query fueron documentadas mediante lenguaje M.
+
+Se incorporaron comentarios técnicos para explicar decisiones como:
+
+- Eliminación de duplicados por clave primaria
+- Tratamiento de valores nulos
+- Asignación de tipos de datos
+- Preparación de claves para relaciones
+- Transformaciones necesarias para el modelo analítico
+
+---
+
