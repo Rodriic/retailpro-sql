@@ -1,135 +1,43 @@
-# RetailPro / TechStore — Proyecto de Análisis de Datos
+# 📊 RetailPro — Proyecto de Análisis de Datos
 
-Proyecto desarrollado como parte de mi formación en Análisis de Datos.
+## Descripción del proyecto
 
-El objetivo es construir una solución de análisis de ventas completa, comenzando por el diseño de una base de datos relacional en SQL Server y avanzando hacia un proceso ETL en Power BI mediante Power Query.
+RetailPro es un proyecto académico desarrollado durante mi formación en Análisis de Datos.
 
----
+El objetivo principal es diseñar e implementar una solución de análisis comercial que permita transformar datos de ventas en información útil para la toma de decisiones.
 
-## Base de datos
+El proyecto abarca desde la creación de una base de datos relacional en SQL Server hasta la limpieza, transformación, modelado y visualización de información en Power BI.
 
-Se creó la base de datos:
+## Objetivos
+
+- Diseñar una base de datos relacional para almacenar información comercial.
+- Desarrollar consultas SQL para analizar ventas, productos y clientes.
+- Implementar procesos ETL mediante Power Query.
+- Construir un modelo analítico con relaciones entre tablas.
+- Crear indicadores comerciales utilizando DAX.
+- Diseñar un dashboard ejecutivo para facilitar la toma de decisiones.
+- Utilizar inteligencia artificial como herramienta de apoyo para documentar y optimizar el proyecto.
+
+## Tecnologías utilizadas
+
+| Herramienta | Aplicación |
+|---|---|
+| SQL Server | Creación y gestión de la base de datos |
+| SQL Server Management Studio | Ejecución de scripts y consultas SQL |
+| SQL | Consultas, JOINs y análisis comercial |
+| Excel | Fuente de datos para el proceso ETL |
+| Power BI Desktop | Modelado y visualización |
+| Power Query | Limpieza y transformación de datos |
+| Lenguaje M | Documentación de transformaciones ETL |
+| DAX | Cálculo de indicadores comerciales |
+| ChatGPT | Apoyo en documentación, revisión de SQL e interpretación de resultados |
+| GitHub | Control de versiones y documentación |
+
+## 1. Base de datos SQL Server
+
+Se desarrolló la base de datos:
 
 `Ventas_Tech_DB`
 
-El modelo está compuesto por cuatro tablas relacionadas:
-
-- `categorias`
-- `clientes`
-- `productos`
-- `ventas`
-
-Se implementaron:
-
-- Primary Keys
-- Foreign Keys
-- Restricciones `NOT NULL`
-- Valores `DEFAULT`
-- Inserción de datos
-- Relaciones entre las tablas
-
----
-
-## Consultas SQL de negocio
-
-Se desarrollaron consultas orientadas al análisis comercial para obtener métricas como:
-
-- Facturación total
-- Cantidad de pedidos
-- Ticket promedio
-- Ranking de productos
-- Unidades vendidas
-- Clientes recurrentes
-- Facturación mensual
-- Comparación contra el promedio mensual
-
----
-
-## JOINs y análisis relacional
-
-Se utilizaron `INNER JOIN` y `LEFT JOIN` para combinar la información de las diferentes tablas.
-
-Entre las consultas realizadas se encuentran:
-
-- Vista detallada de ventas
-- Ventas con información del cliente
-- Ventas con información del producto y categoría
-- Identificación de clientes sin compras
-- Identificación de productos sin ventas
-- Consolidación de información mediante `UNION ALL`
-
----
-
-## Pipeline ETL con Power BI
-
-Se desarrolló un proceso ETL utilizando Power BI y Power Query a partir del dataset `Pipeline_ETL_Dataset.xlsx`.
-
-El proceso incluyó:
-
-### Extracción
-Importación de las tablas:
-
-- `clientes`
-- `productos`
-- `categorias`
-- `ventas`
-
-### Transformación
-Se realizaron tareas de limpieza y preparación de datos:
-
-- Análisis de calidad de columnas
-- Eliminación de registros duplicados por ID
-- Tratamiento de valores nulos
-- Corrección de tipos de datos
-- Estandarización de nombres
-- Validación de claves
-- Preparación de dimensiones y tabla de hechos
-
-Las consultas fueron renombradas siguiendo una nomenclatura orientada a un modelo analítico:
-
-- `Dim_Clientes`
-- `Dim_Productos`
-- `Dim_Categorias`
-- `Fact_Ventas`
-
-### Merge de consultas
-
-Se realizó un Merge entre `Fact_Ventas` y `Dim_Productos` mediante `id_producto`.
-
-Esto permitió incorporar a la tabla de ventas información descriptiva como:
-
-- `nombre_producto`
-- `categoria`
-
-De esta forma, `Fact_Ventas` queda preparada como fuente principal para los futuros análisis y visualizaciones.
-
----
-
-## Calidad de datos
-
-Durante el proceso ETL se identificaron y trataron problemas intencionales del dataset:
-
-- Clientes duplicados
-- Productos duplicados
-- Valores nulos en clientes
-- Valores nulos en productos
-- Tipos de datos incorrectos
-
-Las decisiones de limpieza fueron tomadas buscando conservar información útil sin comprometer la calidad del modelo.
-
----
-
-##  Power Query y lenguaje M
-
-Las transformaciones realizadas en Power Query fueron documentadas mediante lenguaje M.
-
-Se incorporaron comentarios técnicos para explicar decisiones como:
-
-- Eliminación de duplicados por clave primaria
-- Tratamiento de valores nulos
-- Asignación de tipos de datos
-- Preparación de claves para relaciones
-- Transformaciones necesarias para el modelo analítico
-
----
+El modelo rel
 
